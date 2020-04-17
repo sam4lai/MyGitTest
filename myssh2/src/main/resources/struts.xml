@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+      <!-- 设置主题，标签不输出多余tr，td -->
+      <constant name="struts.ui.theme" value="simple" />
+      <!-- 告知Struts2运行时使用Spring来创建对象 -->
+      <constant name="struts.objectFactory" value="spring" />
+
+     <package name="default" extends="struts-default">
+         <!-- 第2步：定义一个action，配置跳转信息 name 类似于Servlet @WebServlet("/IndexServlet") 
+             http://xxxx/xxx/Index.action http://xxxx/xxx/Index class 对应于自己写的Action类 当不写method属性时，默认调用的是execute
+             class="action.IndexAction" ** new action.IndexAction()
+             设计思想：关心了具体的实现类必须改为不要关注那个实现类 加入spring后，struts的action节点的class属性意义发生变化，直接引用spring帮忙创建的实例 
+         -->
+         <action name="Index" class="myIndexAction">
+             <!-- 跳转是forward/WEB-INF/是防止jsp不经过action就可以访问-->
+             <!-- result接收返回的字符串，然后做对应的事情 -->
+             <result name="success">/WEB-INF/jsp/index.jsp</result>
+         </action>
+         
+         <action name="IndexMenu" class="myIndexMenuAction">
+             <!-- 跳转是forward/WEB-INF/是防止jsp不经过action就可以访问-->
+             <!-- result接收返回的字符串，然后做对应的事情 -->
+             <result name="success">/WEB-INF/jsp/index_menu.jsp</result>
+         </action>
+         
+         <action name="ClientList" class="myClientListAction">
+             <!-- 跳转是forward/WEB-INF/是防止jsp不经过action就可以访问-->
+             <!-- result接收返回的字符串，然后做对应的事情 -->
+             <result name="success">/WEB-INF/jsp/client/ClientList.jsp</result>
+         </action>
+         
+         <action name="VehicleList" class="myVehicleListAction">
+             <result name="success">/WEB-INF/jsp/vehicle/VehicleList.jsp</result>
+         </action>
+     </package>
+
+
+</struts>
